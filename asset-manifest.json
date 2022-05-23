@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/scramble-number-game/static/css/main.530502cf.css",
+    "main.js": "/scramble-number-game/static/js/main.cae558b0.js",
+    "static/js/787.e84e07b2.chunk.js": "/scramble-number-game/static/js/787.e84e07b2.chunk.js",
+    "index.html": "/scramble-number-game/index.html",
+    "main.530502cf.css.map": "/scramble-number-game/static/css/main.530502cf.css.map",
+    "main.cae558b0.js.map": "/scramble-number-game/static/js/main.cae558b0.js.map",
+    "787.e84e07b2.chunk.js.map": "/scramble-number-game/static/js/787.e84e07b2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.530502cf.css",
+    "static/js/main.cae558b0.js"
+  ]
+}
