@@ -1,16 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Popup.css';
+import { useSelector } from 'react-redux';
 
-function Popup({ trigger, result, sum }) {
+function Popup({ trigger, result, sum, input }) {
+
+    const clickedNumbers = useSelector( state => state.clickedNumbers );
+    
  
     if (trigger && result === 'won'){
     return (
     <div className='popup'>
        <div className='popup-inner'>
            <button className='close-btn' onClick={() => window.location.reload()}>New Game</button>
-           <h3>Congratulations</h3>
+           <h3>Congratulations You Won!</h3>
+           <h5>---------------------------------------------------------------------------</h5>
+           <h5>Your target was : {input}</h5>
            <h5>Your Sum is : {sum}</h5>
-           <h1>You Won!</h1>
+           {
+               clickedNumbers.map((num,index) => {
+                   return (
+                       <h6 key={index}>Try:{index + 1 } --- clicked box number --- {num.id} --- hidden Number: {num.number} --- Sum left from target number: {input} - {num.number} = {input - num.number} </h6>
+                   );
+               })
+           }
         </div> 
     </div>
     )
@@ -20,9 +32,17 @@ function Popup({ trigger, result, sum }) {
     <div className='popup'>
        <div className='popup-inner'>
            <button className='close-btn' onClick={() => window.location.reload()}>New Game</button>
-           <h3>Sorry</h3>
+           <h3>Sorry You Lost!</h3>
+           <h5>--------------------------------------------</h5>
+           <h5>Your target was : {input}</h5>
            <h5>Your Sum is : {sum}</h5>
-           <h1>You Lost!</h1>
+           {
+               clickedNumbers.map((num,index) => {
+                   return (
+                       <h6 key={index}>Try:{index + 1 } --- clicked box number --- {num.id} --- hidden Number: {num.number} --- Sum left from target number: {input} - {num.number} = {input - num.number} </h6>
+                   );
+               })
+           }
         </div> 
     </div>
     )

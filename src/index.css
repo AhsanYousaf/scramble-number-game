@@ -63,10 +63,22 @@ body{
 }
 
 .stats {
-  margin-left: 120px;
-  margin-bottom: 50px;
+  margin-left: 100px;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   align-content: center;
   align-self: center;
+}
+
+.stats input{
+  width: 200px;
+  height: 25px;
+  border: 2px solid blueviolet;
+  background-color: black;
+  color: blueviolet;  
+}
+
+.stats h4{
+  margin-left: 35px;
 }
