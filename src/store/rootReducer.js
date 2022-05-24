@@ -12,6 +12,8 @@ const initialState = {
         { id: 9 , number: Math.floor(Math.random() * (35 - 1 + 1)) + 1, stat: '' },
     ],
 
+    clickedNumbers: [],
+    input: 100,
     counter: 5,
     sum: 0,
 };
@@ -33,6 +35,16 @@ const reducer =  ( state = initialState , action ) => {
             return{
                 ...state,
                 sum: state.sum + action.payload,
+            };
+        case 'SET_INPUT':
+            return{
+                ...state,
+                input: action.payload,
+            };
+        case 'SELECTED_NUMBER':
+            return{
+                ...state,
+                clickedNumbers: [...state.clickedNumbers, action.payload]
             };
         default:{
             return state;

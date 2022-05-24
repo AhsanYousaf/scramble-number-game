@@ -10,13 +10,13 @@ function Matrices() {
     const [result,setResult] = useState('');
     const dispatch = useDispatch();
 
-    const [input,setInput] = useState(100);
+    const input = useSelector( state => state.input );
 
     const counter = useSelector( state => state.counter );
     const sum = useSelector( state => state.sum );
 
     useEffect(()=>{
-        if ( sum >= input ) {
+        if ( counter !== 5 && sum >= input ) {
             setTrigger(true);
             setResult('won');
         }
@@ -33,27 +33,42 @@ function Matrices() {
                 payload: id,
             });
         
-        dispatch({
-            type: 'DECREMENT_COUNTER',
-        });
+            dispatch({
+                type: 'SELECTED_NUMBER',
+                payload: num,
+            });
 
-        dispatch({
+            dispatch({
+            type: 'DECREMENT_COUNTER',
+            });
+
+            dispatch({
             type: 'INCREMENT_SUM',
             payload: num.number,
-        });
+            });
         }        
            
+    }
+
+    const setInput = (e) => {
+        dispatch({
+            type: 'SET_INPUT',
+            payload: e.target.value,
+        });
     }
 
     return(
         <>
         <div className="stats">
-            <h4>Your Target is : {input}</h4>
+            <input type="password" onChange={(e)=> setInput(e)} placeholder="Enter a number from 1 - 100" />
         </div>
         <div className="stats">
             <h4>Your Sum is : {sum}</h4>
         </div>
-        <Popup trigger={trigger}  result={result} sum={sum}/>
+        <div className="stats">
+            <h4>Chances Left : {counter}</h4>
+        </div>
+        <Popup trigger={trigger}  result={result} sum={sum} input={input}/>
         <div className="container">
             {
                 randomNumbers.map( (num, index) => (
