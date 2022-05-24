@@ -1,3 +1,5 @@
+import { act } from "react-dom/test-utils";
+
 const initialState = {
 
     randomNumbers: [
@@ -44,7 +46,7 @@ const reducer =  ( state = initialState , action ) => {
         case 'SELECTED_NUMBER':
             return{
                 ...state,
-                clickedNumbers: [...state.clickedNumbers, action.payload]
+                clickedNumbers: [...state.clickedNumbers, action.payload],
             };
         default:{
             return state;

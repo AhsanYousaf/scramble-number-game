@@ -28,6 +28,7 @@ function Matrices() {
 
     const handleClick = (id, num) =>{
         if (counter > 0 && sum <= input ){
+            let targetLeft = input - num.number;
             dispatch({
                 type: 'UPDATE_STAT',
                 payload: id,
