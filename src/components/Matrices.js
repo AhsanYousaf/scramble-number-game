@@ -62,21 +62,21 @@ function Matrices() {
     const setMax = (e) => {
         dispatch({
             type: 'SET_MAX',
-            payload: e.target.value,
+            payload: parseInt(e.target.value),
         });
     }
 
     const setInput = (e) => {
         dispatch({
             type: 'SET_INPUT',
-            payload: e.target.value,
+            payload: parseInt(e.target.value),
         });
     }
 
     const setList = (i) => {
         let List;
         List = ({  id: i + 1,
-                number: Math.floor(Math.random() * (max - min + 1)) + min,
+                number: Math.floor(Math.random() * (max - min + 1)) + parseInt(min),
                 stat: '',
             });
         dispatch({
