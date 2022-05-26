@@ -18,8 +18,13 @@ function Popup({ trigger, result, sum, input }) {
            <h5>Your Sum is : {sum}</h5>
            {
                clickedNumbers.map((num,index) => {
+                   let res = input - num.number
                    return (
-                       <h6 key={index}>Try:{index + 1 } --- clicked box number --- {num.id} --- hidden Number: {num.number} --- Sum left from target number: {input} - {num.number} = {input - num.number} </h6>
+                       <h6 key={index}>Try:{index + 1 } --- 
+                       clicked box number --- {num.id} --- 
+                       hidden Number: {num.number} --- 
+                       Sum left from target number: {input} - {num.number} = {res} 
+                       </h6>
                    );
                })
            }
@@ -39,7 +44,11 @@ function Popup({ trigger, result, sum, input }) {
            {
                clickedNumbers.map((num,index) => {
                    return (
-                       <h6 key={index}>Try:{index + 1 } --- clicked box number --- {num.id} --- hidden Number: {num.number} --- Sum left from target number: {input} - {num.number} = {input - num.number} </h6>
+                       <h6 key={index}>Try:{index + 1 } --- 
+                       clicked box number --- {num.id} --- 
+                       hidden Number: {num.number} --- 
+                       Sum left from target number: {input} - {num.number} = {input - num.number} 
+                       </h6>
                    );
                })
            }

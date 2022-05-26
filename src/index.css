@@ -9,8 +9,8 @@ html, body{
 
 h1{
   text-align: center;
-  margin-bottom: 2em;
-  margin-top: 2em;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
 }
 
 body{
@@ -81,4 +81,12 @@ body{
 
 .stats h4{
   margin-left: 35px;
+}
+
+.stats button{
+  margin-left: 65px;
+  border: 2px solid blueviolet;
+  background-color: black;
+  color: blueviolet;
+  padding: 5px;
 }

@@ -9,6 +9,8 @@ function Matrices() {
     const [trigger,setTrigger] = useState(false);
     const [result,setResult] = useState('');
     const dispatch = useDispatch();
+    const min = useSelector( state => state.min );
+    const max = useSelector( state => state.max );
 
     const input = useSelector( state => state.input );
 
@@ -50,6 +52,20 @@ function Matrices() {
            
     }
 
+    const setMin = (e) => {
+        dispatch({
+            type: 'SET_MIN',
+            payload: e.target.value,
+        });
+    }
+
+    const setMax = (e) => {
+        dispatch({
+            type: 'SET_MAX',
+            payload: e.target.value,
+        });
+    }
+
     const setInput = (e) => {
         dispatch({
             type: 'SET_INPUT',
@@ -57,10 +73,40 @@ function Matrices() {
         });
     }
 
+    const setList = (i) => {
+        let List;
+        List = ({  id: i + 1,
+                number: Math.floor(Math.random() * (max - min + 1)) + min,
+                stat: '',
+            });
+        dispatch({
+        type: 'UPDATE_NUMBER',
+        payload: List,
+    });
+        }
+        // };
+    
+
+    const startGame = () => {
+        const n = 9;
+        for (let i = 0; i < n; i++) {
+            setList(i);
+        }
+    }
+
     return(
         <>
         <div className="stats">
-            <input type="password" onChange={(e)=> setInput(e)} placeholder="Enter a number from 1 - 100" />
+            <input type="password" onChange={(e)=> setInput(e)} placeholder="Enter a number" />
+        </div>
+        <div className="stats">
+            <input type="number" placeholder="Minimum Number" onChange={(e)=> setMin(e)} />
+        </div>
+        <div className="stats">
+            <input type="number" placeholder="Maximun Number" onChange={(e)=> setMax(e)} />
+        </div>
+        <div className="stats">
+            <button onClick={()=> startGame()}>Start Game</button>
         </div>
         <div className="stats">
             <h4>Your Sum is : {sum}</h4>

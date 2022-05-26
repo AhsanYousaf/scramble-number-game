@@ -1,21 +1,19 @@
+//let max = initialState.max;
+//let min = initialState.min;
+
+function getRandomNumber(state = initialState) {
+    return Math.floor(Math.random() * (state.max - state.min + 1)) + state.min;
+};
+
 const initialState = {
 
-    randomNumbers: [
-        { id: 1 , number: Math.floor(Math.random() * (35 - 1 + 1)) + 1, stat: '' },
-        { id: 2 , number: Math.floor(Math.random() * (35 - 1 + 1)) + 1, stat: '' },
-        { id: 3 , number: Math.floor(Math.random() * (35 - 1 + 1)) + 1, stat: '' },
-        { id: 4 , number: Math.floor(Math.random() * (35 - 1 + 1)) + 1, stat: '' },
-        { id: 5 , number: Math.floor(Math.random() * (35 - 1 + 1)) + 1, stat: '' },
-        { id: 6 , number: Math.floor(Math.random() * (35 - 1 + 1)) + 1, stat: '' },
-        { id: 7 , number: Math.floor(Math.random() * (35 - 1 + 1)) + 1, stat: '' },
-        { id: 8 , number: Math.floor(Math.random() * (35 - 1 + 1)) + 1, stat: '' },
-        { id: 9 , number: Math.floor(Math.random() * (35 - 1 + 1)) + 1, stat: '' },
-    ],
-
+    randomNumbers: [],
     clickedNumbers: [],
     input: 100,
     counter: 5,
     sum: 0,
+    max: 100,
+    min: 1,
 };
 
 const reducer =  ( state = initialState , action ) => {
@@ -25,6 +23,11 @@ const reducer =  ( state = initialState , action ) => {
             return{
                 ...state,
                 randomNumbers: [ ...state.randomNumbers ,state.randomNumbers[action.payload].stat = 'active' ],
+            };
+        case 'UPDATE_NUMBER':
+            return{
+                ...state,
+                randomNumbers: [...state.randomNumbers, action.payload ]
             };
         case 'DECREMENT_COUNTER':
             return{
@@ -44,8 +47,18 @@ const reducer =  ( state = initialState , action ) => {
         case 'SELECTED_NUMBER':
             return{
                 ...state,
-                clickedNumbers: [...state.clickedNumbers, action.payload]
+                clickedNumbers: [...state.clickedNumbers, action.payload],
             };
+        case 'SET_MIN':
+            return{
+                ...state,
+                min: action.payload,
+            };  
+        case 'SET_MAX':
+            return{
+                ...state,
+                max: action.payload,
+            };  
         default:{
             return state;
         }
