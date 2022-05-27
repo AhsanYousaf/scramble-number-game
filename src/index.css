@@ -81,6 +81,12 @@ body{
 
 .stats h4{
   margin-left: 35px;
+  margin-top: 0px;
+}
+
+.stats h5 {
+  margin-left: 35px;
+  margin-top: 0px;
 }
 
 .stats button{

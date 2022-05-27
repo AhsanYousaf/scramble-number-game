@@ -11,25 +11,45 @@ function Matrices() {
     const dispatch = useDispatch();
     const min = useSelector( state => state.min );
     const max = useSelector( state => state.max );
+    const currentNumber = useSelector( state => state.currentNumber );
 
     const input = useSelector( state => state.input );
 
     const counter = useSelector( state => state.counter );
-    const sum = useSelector( state => state.sum );
 
     useEffect(()=>{
-        if ( counter !== 5 && sum >= input ) {
+        if ( currentNumber === parseInt(input)) {
             setTrigger(true);
             setResult('won');
         }
-        if ( counter === 0 && sum < input ) {
+        if ( currentNumber !== parseInt(input) && counter === 0) {
             setTrigger(true);
             setResult('lost');
         }
-    },[sum,input,counter]);
+        if ( currentNumber < input && currentNumber > 0 ) {
+            dispatch({
+            type: 'SET_MIN',
+            payload: currentNumber,
+        });
+        rescatterNumbers();
+        dispatch({
+            type: 'KEEP_NUMBER'
+        });    
+        }
+        if ( currentNumber > input && currentNumber > 0 ) {
+            dispatch({
+            type: 'SET_MAX',
+            payload: currentNumber,
+        });
+        rescatterNumbers();   
+        dispatch({
+            type: 'KEEP_NUMBER'
+        }); 
+        }
+    },[currentNumber,input,max,min,counter]);
 
     const handleClick = (id, num) =>{
-        if (counter > 0 && sum <= input ){
+        if (counter > 0){
             dispatch({
                 type: 'UPDATE_STAT',
                 payload: id,
@@ -45,10 +65,20 @@ function Matrices() {
             });
 
             dispatch({
-            type: 'INCREMENT_SUM',
-            payload: num.number,
+            type: 'CURRENT_NUMBER',
+            payload: id,
             });
-        }        
+
+            dispatch({
+            type: 'PREVIOUS_NUMBER',
+            payload: {
+                id: id,
+                number: num.number,
+            }
+            });
+
+        }
+                
            
     }
 
@@ -73,18 +103,27 @@ function Matrices() {
         });
     }
 
+    const rescatterNumbers = () => {
+        dispatch({
+            type: 'DELETE_LIST',
+        });
+        if (randomNumbers.length !== 8) {
+        startGame();
+        }
+    }
+
     const setList = (i) => {
         let List;
         List = ({  id: i + 1,
-                number: Math.floor(Math.random() * (max - min + 1)) + min,
+                number: Math.floor(Math.random() * (max - min + 1)) + parseInt(min),
                 stat: '',
             });
         dispatch({
         type: 'UPDATE_NUMBER',
         payload: List,
     });
+    console.log(currentNumber);
         }
-        // };
     
 
     const startGame = () => {
@@ -109,16 +148,20 @@ function Matrices() {
             <button onClick={()=> startGame()}>Start Game</button>
         </div>
         <div className="stats">
-            <h4>Your Sum is : {sum}</h4>
-        </div>
-        <div className="stats">
             <h4>Chances Left : {counter}</h4>
         </div>
-        <Popup trigger={trigger}  result={result} sum={sum} input={input}/>
+        <div className="stats">
+            <h5>{ counter < 5  && currentNumber > input ? 'Greater Than Target': '' }</h5>
+        </div>
+        <div className="stats">
+            <h5>{ counter < 5  && currentNumber < input ? 'Smaller Than Target': '' }</h5>
+        </div>
+        <Popup trigger={trigger}  result={result} input={input}/>
         <div className="container">
             {
                 randomNumbers.map( (num, index) => (
                     <Matrix key={index} num={num} id={index} handleClick={handleClick} />
+                    
                 ))
             }
         </div>

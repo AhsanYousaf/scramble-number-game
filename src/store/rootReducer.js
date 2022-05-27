@@ -1,19 +1,13 @@
-//let max = initialState.max;
-//let min = initialState.min;
-
-function getRandomNumber(state = initialState) {
-    return Math.floor(Math.random() * (state.max - state.min + 1)) + state.min;
-};
-
 const initialState = {
 
     randomNumbers: [],
     clickedNumbers: [],
     input: 100,
     counter: 5,
-    sum: 0,
     max: 100,
     min: 1,
+    currentNumber: 0,
+    previousNumber: {}
 };
 
 const reducer =  ( state = initialState , action ) => {
@@ -22,7 +16,7 @@ const reducer =  ( state = initialState , action ) => {
         case 'UPDATE_STAT':
             return{
                 ...state,
-                randomNumbers: [ ...state.randomNumbers ,state.randomNumbers[action.payload].stat = 'active' ],
+                randomNumbers: [ ...state.randomNumbers ,state.randomNumbers[action.payload].stat = 'active',]
             };
         case 'UPDATE_NUMBER':
             return{
@@ -33,11 +27,6 @@ const reducer =  ( state = initialState , action ) => {
             return{
                 ...state,
                 counter: state.counter - 1,
-            };
-        case 'INCREMENT_SUM':
-            return{
-                ...state,
-                sum: state.sum + action.payload,
             };
         case 'SET_INPUT':
             return{
@@ -58,7 +47,31 @@ const reducer =  ( state = initialState , action ) => {
             return{
                 ...state,
                 max: action.payload,
-            };  
+            };
+        case 'DELETE_LIST':
+            return{
+                ...state,
+                randomNumbers: [],
+            };
+        case 'CURRENT_NUMBER':
+            return{
+                ...state,
+                currentNumber: state.randomNumbers[action.payload].number,
+            };
+        case 'PREVIOUS_NUMBER':
+            return{
+                ...state,
+                previousNumber: { id: action.payload.id , number: action.payload.number , stat: 'active' }
+            };
+        case 'KEEP_NUMBER':
+            return{
+                ...state,
+                randomNumbers: [ ...state.randomNumbers ,
+                    state.randomNumbers[state.previousNumber.id].id = state.previousNumber.id,
+                    state.randomNumbers[state.previousNumber.id].number = state.previousNumber.number,
+                    state.randomNumbers[state.previousNumber.id].stat = state.previousNumber.stat,
+                ]
+            }; 
         default:{
             return state;
         }
