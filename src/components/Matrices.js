@@ -106,10 +106,9 @@ function Matrices() {
     const rescatterNumbers = () => {
         dispatch({
             type: 'DELETE_LIST',
+            payload: randomNumbers,
         });
-        if (randomNumbers.length !== 8) {
-        startGame();
-        }
+        startGame(); 
     }
 
     const setList = (i) => {
@@ -122,8 +121,7 @@ function Matrices() {
         type: 'UPDATE_NUMBER',
         payload: List,
     });
-    console.log(currentNumber);
-        }
+    }
     
 
     const startGame = () => {
