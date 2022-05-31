@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import './Popup.css';
 import { useSelector } from 'react-redux';
 
-function Popup({ trigger, result, sum, input }) {
+function Popup({ trigger, result, input }) {
 
-    const clickedNumbers = useSelector( state => state.clickedNumbers );
+   // const clickedNumbers = useSelector( state => state.clickedNumbers );
     
  
     if (trigger && result === 'won'){
@@ -15,8 +15,7 @@ function Popup({ trigger, result, sum, input }) {
            <h3>Congratulations You Won!</h3>
            <h5>---------------------------------------------------------------------------</h5>
            <h5>Your target was : {input}</h5>
-           <h5>Your Sum is : {sum}</h5>
-           {
+           {/* {
                clickedNumbers.map((num,index) => {
                    let res = input - num.number
                    return (
@@ -27,7 +26,7 @@ function Popup({ trigger, result, sum, input }) {
                        </h6>
                    );
                })
-           }
+           } */}
         </div> 
     </div>
     )
@@ -40,8 +39,7 @@ function Popup({ trigger, result, sum, input }) {
            <h3>Sorry You Lost!</h3>
            <h5>--------------------------------------------</h5>
            <h5>Your target was : {input}</h5>
-           <h5>Your Sum is : {sum}</h5>
-           {
+           {/* {
                clickedNumbers.map((num,index) => {
                    return (
                        <h6 key={index}>Try:{index + 1 } --- 
@@ -51,7 +49,7 @@ function Popup({ trigger, result, sum, input }) {
                        </h6>
                    );
                })
-           }
+           } */}
         </div> 
     </div>
     )
