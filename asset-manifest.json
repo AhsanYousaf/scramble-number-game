@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/scramble-number-game/static/css/main.8de86d41.css",
-    "main.js": "/scramble-number-game/static/js/main.7a0d8564.js",
+    "main.css": "/scramble-number-game/static/css/main.12f992f0.css",
+    "main.js": "/scramble-number-game/static/js/main.ffd5df53.js",
     "static/js/787.e84e07b2.chunk.js": "/scramble-number-game/static/js/787.e84e07b2.chunk.js",
     "index.html": "/scramble-number-game/index.html",
-    "main.8de86d41.css.map": "/scramble-number-game/static/css/main.8de86d41.css.map",
-    "main.7a0d8564.js.map": "/scramble-number-game/static/js/main.7a0d8564.js.map",
+    "main.12f992f0.css.map": "/scramble-number-game/static/css/main.12f992f0.css.map",
+    "main.ffd5df53.js.map": "/scramble-number-game/static/js/main.ffd5df53.js.map",
     "787.e84e07b2.chunk.js.map": "/scramble-number-game/static/js/787.e84e07b2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8de86d41.css",
-    "static/js/main.7a0d8564.js"
+    "static/css/main.12f992f0.css",
+    "static/js/main.ffd5df53.js"
   ]
 }
