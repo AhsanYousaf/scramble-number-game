@@ -13,11 +13,6 @@ const initialState = {
 const reducer =  ( state = initialState , action ) => {
     switch(action.type){
         
-        case 'UPDATE_STAT':
-            return{
-                ...state,
-                randomNumbers: [ ...state.randomNumbers ,state.randomNumbers[action.payload].stat = 'active',]
-            };
         case 'UPDATE_NUMBER':
             return{
                 ...state,
